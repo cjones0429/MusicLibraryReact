@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
-import 'bootstrap/dist/css/boostrap.css';
+// import 'bootstrap/dist/css/boostrap.css';
 
 const jsxElement = <h1>Our React App</h1>;
 console.log(jsxElement);
