@@ -5,8 +5,12 @@ import SongForm from './SongForm/songForm';
 import SearchBar from './SearchBar/searchBar';
 
 class App extends Component {
-    state = {
-        songs: []
+    constructor(props){
+        super(props);
+        this.state = {
+            songs: [],
+            currentSongs: []
+        }
     }
 
     componentDidMount(){
@@ -18,7 +22,8 @@ class App extends Component {
         
         let response = await axios.get('http://127.0.0.1:8000/music/');
         this.setState({
-            songs: response.data
+            songs: response.data,
+            currentSongs: response.data
         });
     }
 
