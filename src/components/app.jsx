@@ -27,6 +27,22 @@ class App extends Component {
         });
     }
 
+    async addSong(song){
+        await axios.post('http://127.0.0.1:8000/music/', song);
+        let response = await this.getAllSongs()
+        if(response === undefined){
+            this.setState({
+
+            })
+        }
+        else{
+            this.setState({
+                songs: response.data
+            });
+        }
+
+    }
+
     // addNewSong(song){
     //     this.songs.push(song);
     //     this.setState({
@@ -39,23 +55,23 @@ class App extends Component {
     //     this.getAllSongs();
     // }
     
-    async addSong(title, artist, album, release_date, genre){
-        let newSong = {
-            title: title,
-            artist: artist,
-            album: album,
-            release_date: release_date,
-            genre: genre
-        }
-        try{
-            let result = await axios.post('http:127.0.0.1:8000/music/', newSong)
-            newSong.id = result.data.id
-            this.setState({songs: [...this.state.songs, newSong]})
-        }
-        catch (ex) {
-            console.log("error creating song");
-        }
-    }
+    // async addSong(title, artist, album, release_date, genre){
+    //     let newSong = {
+    //         title: title,
+    //         artist: artist,
+    //         album: album,
+    //         release_date: release_date,
+    //         genre: genre
+    //     }
+    //     try{
+    //         let result = await axios.post('http:127.0.0.1:8000/music/', newSong)
+    //         newSong.id = result.data.id
+    //         this.setState({songs: [...this.state.songs, newSong]})
+    //     }
+    //     catch (ex) {
+    //         console.log("error creating song");
+    //     }
+    // }
 
     // addSong = song => {
     //     console.log("add song method")

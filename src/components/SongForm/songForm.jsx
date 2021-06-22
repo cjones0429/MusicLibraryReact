@@ -22,34 +22,30 @@ class SongForm extends Component {
         });
     }
 
-    handleSubmit(event){
+    handleSubmit(event) {
         event.preventDefault();
-        this.props.func(this.state.title, this.state.artist, this.state.album, this.state.release_date, this.state.genre)
+        const song = {
+            title: this.state.title,
+            artist: this.state.artist,
+            album: this.state.album,
+            release_date: this.state.release_date,
+            genre: this.state.genre,
+            likes: this.state.likes
+        }
+        this.props.addSong(song);
+        this.setState({
+            title: '',
+            artist: '',
+            album: '',
+            release_date: '',
+            genre: '',
+            likes: ''
+        });
     }
-    // handleSubmit(event) {
-    //     event.preventDefault();
-    //     const song = {
-    //         title: this.state.title,
-    //         artist: this.state.artist,
-    //         album: this.state.album,
-    //         release_date: this.state.release_date,
-    //         genre: this.state.genre,
-    //         likes: this.state.likes
-    //     }
-    //     this.props.addNewSong(song);
-    //     this.setState({
-    //         title: '',
-    //         artist: '',
-    //         album: '',
-    //         release_date: '',
-    //         genre: '',
-    //         likes: ''
-    //     });
-    // }
 
     render() {
         return (
-            <div>
+            <div className="form-box">
                 <hr />
                 <center>
                     <h3> Add a new song </h3>
