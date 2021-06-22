@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './songForm.css';
 
 class SongForm extends Component {
     constructor(props) {
@@ -16,14 +17,13 @@ class SongForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         });
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
+    handleSubmit = (event) => {
         const song = {
             title: this.state.title,
             artist: this.state.artist,
@@ -40,45 +40,46 @@ class SongForm extends Component {
             release_date: '',
             genre: '',
             likes: ''
-        });
+        })
+        event.preventDefault();
     }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.addSong(this.state);
+    };
 
     render() {
         return (
             <div className="form-box">
-                <hr />
+                <form onSubmit={this.handleSubmit}>
+                <br />
                 <center>
                     <h3> Add a new song </h3>
                 </center>
-                <form onSubmit={this.handleSubmit}>
-                    <div className="row col-align">
-                        <div className="col-md-4">
+                    <div>
+                        <div>
                             <label>Title:</label>
-                            <input type="text" name="title" value={this.state.title}
-                            onChange={this.handleChange}/>
+                            <input type="text" name="title" onChange={this.handleChange} value={this.state.title}/>
                         </div>
-                        <div className="col-md-4">
+                        <div>
                             <label>Artist:</label>
-                            <input type="text" name="artist" value={this.state.artist}
-                            onChange={this.handleChange}/>
+                            <input type="text" name="artist" onChange={this.handleChange} value={this.state.artist}/>
                         </div>
-                        <div className="col-md-4">
+                        <div>
                             <label>Album:</label>
-                            <input type="text" name="album" value={this.state.album}
-                            onChange={this.handleChange}/>
+                            <input type="text" name="album" onChange={this.handleChange} value={this.state.album}/>
                         </div>
-                        <div className="col-md-4">
+                        <div>
                             <label>Release Date:</label>
-                            <input type="date" name="release_date" value={this.state.release_date}
-                            onChange={this.handleChange}/>
+                            <input type="date" name="release_date" onChange={this.handleChange} value={this.state.release_date}/>
                         </div>
-                        <div className="col-md-4">
+                        <div>
                             <label>Genre:</label>
-                            <input type="text" name="genre" value={this.state.genre}
-                            onChange={this.handleChange}/>
+                            <input type="text" name="genre" onChange={this.handleChange} value={this.state.genre}/>
                         </div>
-                        <div className="col-md-4">
-                            <input type="submit" value="Add Song"/>
+                        <div>
+                            <button type='submit'>Add Song</button>
                         </div>
                     </div>
                 </form>
