@@ -1,13 +1,13 @@
 import React from 'react';
 import './musicTable.css';
 
-const MusicTable = (props) => {
+function MusicTable(props) {
+    console.log(props)
     return(
-        <div>
+        <div className='container'>
             <table>
                 <thead>
                     <tr>
-                        <th>I.D.</th>
                         <th>Title</th>
                         <th>Artist</th>
                         <th>Album</th>
@@ -18,21 +18,21 @@ const MusicTable = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.songs.map((song) =>
-                        <tr key={song.id}>
+                    {props.songs.map((song, index) => (
+                        <tr data-index={index} key={song.id}>
                             <td>{song.title}</td>
                             <td>{song.artist}</td>
                             <td>{song.album}</td>
                             <td>{song.release_date}</td>
                             <td>{song.genre}</td>
                             <td>{song.likes}</td>
-                            <td><button className="btn btn-danger" onClick={props.deleteSong.bind(this, song.id)}>Delete</button></td>
+                            <td><button className="btn" onClick={() => this.deleteSong(song.id)}>Delete</button></td>
                         </tr>
-                    )}
+                    ))}
                 </tbody>
             </table>
         </div>
-    )
+    );
 }
 
 export default MusicTable;
