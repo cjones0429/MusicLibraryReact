@@ -24,6 +24,7 @@ class SongForm extends Component {
     }
 
     handleSubmit = (event) => {
+        event.preventDefault();
         const song = {
             title: this.state.title,
             artist: this.state.artist,
@@ -40,18 +41,17 @@ class SongForm extends Component {
             release_date: '',
             genre: '',
             likes: ''
-        })
-        event.preventDefault();
+        });
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        this.props.addSong(this.state);
-    };
+    // handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     this.props.addSong(this.state);
+    // };
 
     render() {
         return (
-            <div className="form-box">
+            <div className="form-box container">
                 <form onSubmit={this.handleSubmit}>
                 <br />
                 <center>
@@ -72,11 +72,15 @@ class SongForm extends Component {
                         </div>
                         <div>
                             <label>Release Date:</label>
-                            <input type="date" name="release_date" onChange={this.handleChange} value={this.state.release_date}/>
+                            <input type="text" name="release_date" onChange={this.handleChange} value={this.state.release_date}/>
                         </div>
                         <div>
                             <label>Genre:</label>
                             <input type="text" name="genre" onChange={this.handleChange} value={this.state.genre}/>
+                        </div>
+                        <div>
+                            <label>Likes:</label>
+                            <input type="number" name="likes" onChange={this.handleChange} value={this.state.likes}/>
                         </div>
                         <div>
                             <button type='submit'>Add Song</button>

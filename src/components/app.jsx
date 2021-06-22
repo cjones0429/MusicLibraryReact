@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { Component } from 'react';
+import axios from 'axios';
 import MusicTable from './MusicTable/musicTable';
 import SongForm from './SongForm/songForm';
 import SearchBar from './SearchBar/searchBar';
@@ -24,7 +24,7 @@ class App extends Component {
     }
 
     addSong = async (song) => {
-        await axios.post(`http://127.0.0.1:8000/music/`, song);
+        await axios.post('http://127.0.0.1:8000/music/', song)
         let response = await this.getAllSongs()
         if(response === undefined){
             this.setState({
@@ -53,23 +53,33 @@ class App extends Component {
             });
         }
     }
-
-    // async deleteSong(songId){
-    //     await axios.delete(`http:127.0.0.1:8000/music/${songId}/`);
-    //     this.getAllSongs();
-    // }
     
-    filterSongs = (filteredSongs) => {
-        this.setState({
-            currentSongs: filteredSongs
-        })
+    filterSongs(){
+
+    }
+ 
+    likeSong = async (id, title) => {
+        await axios.patch(`http://127.0.0.1:8000/music/${id}/${title}/`)
+        let response = await this.getAllSongs()
+        if(response === undefined){
+            this.setState({
+                
+            });
+        }
+        else{
+            this.setState({
+                songs: response.data
+            });
+        }
     }
 
     render() {
         return(
             <div className="App">
+                <SearchBar filterSongs={this.filterSongs}/>
+
                 <MusicTable songs={this.state.songs} deleteSong={this.deleteSong}/>
-                <SearchBar songs={this.state.songs} filterSongs={this.filterSongs}/>
+                
                 <SongForm addSong={this.addSong.bind(this)}/>
             </div>
         );
