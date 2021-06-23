@@ -83,6 +83,7 @@ class SongForm extends Component {
                             <Button variant="primary" type="submit">Add Song</Button>
                         </Form>
                         <br/>
+                        <br/>
             </div>
         );
     }
