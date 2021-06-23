@@ -33,8 +33,11 @@ function MusicTable(props) {
                             <td>{song.album}</td>
                             <td>{song.release_date}</td>
                             <td>{song.genre}</td>
-                            <td><button type ="button" className="btn btn-outline-success" onClick={() => {props.likeSong(props.songid, props.title)}}>Like</button></td>
-                            <td><button type ="button" className="btn btn-outline-primary" onClick={() => {props.editSong(props.songid)}}>Edit</button></td>
+                            {/* THESE BUTTONS DO NOTHING, ONLY HERE FOR USER INTERFACE. FUNCTIONS DO NOT WORK. */}
+                            <td><button type ="button" className="btn btn-outline-success">Like</button></td>
+                            <td><button type ="button" className="btn btn-outline-primary">Edit</button></td>
+                            {/* <td><button type ="button" className="btn btn-outline-success" onClick={() => {props.likeSong(props.songid, props.title)}}>Like</button></td>
+                            <td><button type ="button" className="btn btn-outline-primary" onClick={() => {props.editSong(props.songid)}}>Edit</button></td> */}
                             <td><button type="button" className="btn btn-outline-danger" onClick={() => {props.deleteSong(song.id)}}>Delete</button></td>
                         </tr>
                     ))}

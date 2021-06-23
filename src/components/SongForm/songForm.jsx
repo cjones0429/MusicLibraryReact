@@ -72,7 +72,7 @@ class SongForm extends Component {
                             <br/>
                             <Form.Group controlId="release_date">
                                 <Form.Label>Release Date:</Form.Label>
-                                <Form.Control type="text" placeholder="example: 2020-10-03T00:00:00Z" name="release_date" onChange={this.handleChange} value={this.state.release_date}/>
+                                <Form.Control type="text" placeholder="example: 2020-03-28T00:00:00Z" name="release_date" onChange={this.handleChange} value={this.state.release_date}/>
                             </Form.Group>
                             <br/>
                             <Form.Group controlId="genre">

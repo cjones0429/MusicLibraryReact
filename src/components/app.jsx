@@ -3,7 +3,6 @@ import axios from 'axios';
 import MusicTable from './MusicTable/musicTable';
 import SongForm from './SongForm/songForm';
 import SearchBar from './SearchBar/searchBar';
-// import NavBar from './NavBar/navBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
@@ -19,13 +18,6 @@ class App extends Component {
 
     async getAllSongs(){
         
-        let response = await axios.get(`http://127.0.0.1:8000/music/`);
-        this.setState({
-            songs: response.data,
-        });
-    }
-
-    async returnToLibrary(){
         let response = await axios.get(`http://127.0.0.1:8000/music/`);
         this.setState({
             songs: response.data,
@@ -76,43 +68,43 @@ class App extends Component {
         });
     }
     
-    editSong = async (id) => {
-        console.log(this.props)
-        await axios.put(`http://127.0.0.1:8000/music/${id}/`)
-        let response = await this.getAllSongs()
-        if(response === undefined){
-            this.setState({
+    // EDIT NOT FUNCTIONAL - PLANS FOR FUTURE
+    // editSong = async (id) => {
+    //     console.log(this.props)
+    //     await axios.put(`http://127.0.0.1:8000/music/${id}/`)
+    //     let response = await this.getAllSongs()
+    //     if(response === undefined){
+    //         this.setState({
                 
-            });
-        }
-        else{
-            this.setState({
-                songs: response.data
-            });
-        }
-    }
- 
-    likeSong = async (id, title) => {
-        await axios.patch(`http://127.0.0.1:8000/music/${id}/${title}/`)
-        let response = await this.getAllSongs()
-        if(response === undefined){
-            this.setState({
+    //         });
+    //     }
+    //     else{
+    //         this.setState({
+    //             songs: response.data
+    //         });
+    //     }
+    // }
+    
+    // LIKE NOT FUNCTIONAL - PLANS FOR FUTURE
+    // likeSong = async (id, title) => {
+    //     await axios.patch(`http://127.0.0.1:8000/music/${id}/${title}/`)
+    //     let response = await this.getAllSongs()
+    //     if(response === undefined){
+    //         this.setState({
                 
-            });
-        }
-        else{
-            this.setState({
-                songs: response.data
-            });
-        }
-    }
+    //         });
+    //     }
+    //     else{
+    //         this.setState({
+    //             songs: response.data
+    //         });
+    //     }
+    // }
 
     render() {
         return(
             <div className="container">
-                {/* <NavBar /> */}
                 <SearchBar filterSongs={this.filterSongs}/>
-                {/* <button type="button" className="btn" onClick={this.}>Music Library</button> */}
 
                 <MusicTable songs={this.state.songs} deleteSong={this.deleteSong}/>
                 
