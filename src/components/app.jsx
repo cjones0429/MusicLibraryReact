@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import MusicTable from './MusicTable/musicTable';
 import SongForm from './SongForm/songForm';
-// import SearchBar from './SearchBar/searchBar';
+import SearchBar from './SearchBar/searchBar';
+// import NavBar from './NavBar/navBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
     state = {
-        songs: [],
-        searchField: []
+        songs: []
     }
+
 
     componentDidMount(){
         this.getAllSongs();
@@ -19,7 +21,14 @@ class App extends Component {
         
         let response = await axios.get(`http://127.0.0.1:8000/music/`);
         this.setState({
-            songs: response.data
+            songs: response.data,
+        });
+    }
+
+    async returnToLibrary(){
+        let response = await axios.get(`http://127.0.0.1:8000/music/`);
+        this.setState({
+            songs: response.data,
         });
     }
 
@@ -52,6 +61,19 @@ class App extends Component {
                 songs: response.data
             });
         }
+    }
+
+    filterSongs = (filterLibrary) => {
+        const songFilter = this.state.songs.filter(song => 
+        song.title.toLowerCase().includes(filterLibrary.toLowerCase()) ||
+        song.artist.toLowerCase().includes(filterLibrary.toLowerCase()) ||
+        song.album.toLowerCase().includes(filterLibrary.toLowerCase()) ||
+        song.release_date.toLowerCase().includes(filterLibrary.toLowerCase()) ||
+        song.genre.toLowerCase().includes(filterLibrary.toLowerCase())
+    )
+        this.setState({
+            songs: songFilter
+        });
     }
     
     editSong = async (id) => {
@@ -86,19 +108,11 @@ class App extends Component {
     }
 
     render() {
-        // for filter song method -- non functional
-        // const {songs, searchField} = this.state.songs
-        // const filteredSongs = songs.filter(song =>(
-        //     song.title.toLowerCase().includes(searchField.toLowerCase()) ||
-        //     song.artist.toLowerCase().includes(searchField.toLowerCase()) ||
-        //     song.album.toLowerCase().includes(searchField.toLowerCase()) ||
-        //     song.genre.toLowerCase().includes(searchField.toLowerCase()) ||
-        //     song.release_date.toLowerCase().includes(searchField.toLowerCase())
-        // ))
-
         return(
-            <div className="App">
-                {/* <SearchBar placeholder="Search Here" handleChange={(e) => this.setState({searchField:e.target.value})}/> */}
+            <div className="container">
+                {/* <NavBar /> */}
+                <SearchBar filterSongs={this.filterSongs}/>
+                {/* <button type="button" className="btn" onClick={this.}>Music Library</button> */}
 
                 <MusicTable songs={this.state.songs} deleteSong={this.deleteSong}/>
                 

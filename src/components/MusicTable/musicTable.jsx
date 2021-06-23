@@ -1,13 +1,17 @@
 import React from 'react';
 import './musicTable.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function MusicTable(props) {
     console.log(props)
     return(
         <div className='container'>
+            <br/>
+            <center>
             <h1>Caitlin's Music Library</h1>
-            <table className="table table-dark table-hover" width="100%">
-                <thead>
+            </center>
+            <table className="table" width="100%">
+                <thead className="table-dark">
                     <tr>
                         <th>I.D.</th>
                         <th>Title</th>
@@ -15,6 +19,8 @@ function MusicTable(props) {
                         <th>Album</th>
                         <th>Release Date</th>
                         <th>Genre</th>
+                        <th></th>
+                        <th></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -27,8 +33,9 @@ function MusicTable(props) {
                             <td>{song.album}</td>
                             <td>{song.release_date}</td>
                             <td>{song.genre}</td>
-                            <td><button type ="button" className="btn" onClick={() => {props.editSong(props.songid)}}>Edit</button></td>
-                            <td><button type="button" className="btn" onClick={() => {props.deleteSong(song.id)}}>Delete</button></td>
+                            <td><button type ="button" className="btn btn-outline-success" onClick={() => {props.likeSong(props.songid, props.title)}}>Like</button></td>
+                            <td><button type ="button" className="btn btn-outline-primary" onClick={() => {props.editSong(props.songid)}}>Edit</button></td>
+                            <td><button type="button" className="btn btn-outline-danger" onClick={() => {props.deleteSong(song.id)}}>Delete</button></td>
                         </tr>
                     ))}
                 </tbody>

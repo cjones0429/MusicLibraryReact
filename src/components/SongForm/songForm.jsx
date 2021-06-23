@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import './songForm.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Form } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 class SongForm extends Component {
     constructor(props) {
@@ -47,41 +50,39 @@ class SongForm extends Component {
     render() {
         return (
             <div className="form-box container">
-                <form onSubmit={this.handleSubmit}>
-                <br />
                 <center>
-                    <h3> Add a new song </h3>
+                    <br/>
+                    <h3> Add a New Song </h3>
                 </center>
-                    <div>
-                        <div>
-                            <label>Title:</label>
-                            <input type="text" name="title" onChange={this.handleChange} value={this.state.title}/>
-                        </div>
-                        <div>
-                            <label>Artist:</label>
-                            <input type="text" name="artist" onChange={this.handleChange} value={this.state.artist}/>
-                        </div>
-                        <div>
-                            <label>Album:</label>
-                            <input type="text" name="album" onChange={this.handleChange} value={this.state.album}/>
-                        </div>
-                        <div>
-                            <label>Release Date:</label>
-                            <input type="text" name="release_date" onChange={this.handleChange} value={this.state.release_date}/>
-                        </div>
-                        <div>
-                            <label>Genre:</label>
-                            <input type="text" name="genre" onChange={this.handleChange} value={this.state.genre}/>
-                        </div>
-                        <div>
-                            <label>Likes:</label>
-                            <input type="number" name="likes" onChange={this.handleChange} value={this.state.likes}/>
-                        </div>
-                        <div>
-                            <button type='submit'>Add Song</button>
-                        </div>
-                    </div>
-                </form>
+                        <Form onSubmit={this.handleSubmit}>
+                            <Form.Group controlId="title">
+                                <Form.Label>Song Title:</Form.Label>
+                                <Form.Control type="text" placeholder="Enter Song" name="title" onChange={this.handleChange} value={this.state.title}/>
+                            </Form.Group>
+                            <br/>
+                            <Form.Group controlId="artist">
+                                <Form.Label>Artist:</Form.Label>
+                                <Form.Control type="text" placeholder="Artist" name="artist" onChange={this.handleChange} value={this.state.artist}/>
+                            </Form.Group>
+                            <br/>
+                            <Form.Group controlId="album">
+                                <Form.Label>Album:</Form.Label>
+                                <Form.Control type="text" placeholder="Album" name="album" onChange={this.handleChange} value={this.state.album}/>
+                            </Form.Group>
+                            <br/>
+                            <Form.Group controlId="release_date">
+                                <Form.Label>Release Date:</Form.Label>
+                                <Form.Control type="text" placeholder="example: 2020-10-03T00:00:00Z" name="release_date" onChange={this.handleChange} value={this.state.release_date}/>
+                            </Form.Group>
+                            <br/>
+                            <Form.Group controlId="genre">
+                                <Form.Label>Genre:</Form.Label>
+                                <Form.Control type="text" placeholder="example: Country, Pop, Hip Hop, RnB, etc" name="genre" onChange={this.handleChange} value={this.state.genre}/>
+                            </Form.Group>
+                            <br/>
+                            <Button variant="primary" type="submit">Add Song</Button>
+                        </Form>
+                        <br/>
             </div>
         );
     }
