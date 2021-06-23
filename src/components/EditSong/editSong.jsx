@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './songForm.css';
+import './editSong.css';
 
-class SongForm extends Component {
+class EditSong extends Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -33,7 +33,7 @@ class SongForm extends Component {
             genre: this.state.genre,
             // likes: this.state.likes
         }
-        this.props.addSong(song);
+        this.props.editSong(song);
         this.setState({
             title: '',
             artist: '',
@@ -50,7 +50,7 @@ class SongForm extends Component {
                 <form onSubmit={this.handleSubmit}>
                 <br />
                 <center>
-                    <h3> Add a new song </h3>
+                    <h3> Edit a Song </h3>
                 </center>
                     <div>
                         <div>
@@ -73,12 +73,12 @@ class SongForm extends Component {
                             <label>Genre:</label>
                             <input type="text" name="genre" onChange={this.handleChange} value={this.state.genre}/>
                         </div>
-                        <div>
+                        {/* <div>
                             <label>Likes:</label>
                             <input type="number" name="likes" onChange={this.handleChange} value={this.state.likes}/>
-                        </div>
+                        </div> */}
                         <div>
-                            <button type='submit'>Add Song</button>
+                            <button type='submit'>Edit Song</button>
                         </div>
                     </div>
                 </form>
@@ -87,4 +87,4 @@ class SongForm extends Component {
     }
 }
 
-export default SongForm;
+export default EditSong;

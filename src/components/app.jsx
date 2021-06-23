@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import MusicTable from './MusicTable/musicTable';
 import SongForm from './SongForm/songForm';
-import SearchBar from './SearchBar/searchBar';
+// import SearchBar from './SearchBar/searchBar';
 
 class App extends Component {
     state = {
         songs: [],
-        filteredSongs: []
+        searchField: []
     }
 
     componentDidMount(){
@@ -54,8 +54,20 @@ class App extends Component {
         }
     }
     
-    filterSongs(){
-
+    editSong = async (id) => {
+        console.log(this.props)
+        await axios.put(`http://127.0.0.1:8000/music/${id}/`)
+        let response = await this.getAllSongs()
+        if(response === undefined){
+            this.setState({
+                
+            });
+        }
+        else{
+            this.setState({
+                songs: response.data
+            });
+        }
     }
  
     likeSong = async (id, title) => {
@@ -74,9 +86,19 @@ class App extends Component {
     }
 
     render() {
+        // for filter song method -- non functional
+        // const {songs, searchField} = this.state.songs
+        // const filteredSongs = songs.filter(song =>(
+        //     song.title.toLowerCase().includes(searchField.toLowerCase()) ||
+        //     song.artist.toLowerCase().includes(searchField.toLowerCase()) ||
+        //     song.album.toLowerCase().includes(searchField.toLowerCase()) ||
+        //     song.genre.toLowerCase().includes(searchField.toLowerCase()) ||
+        //     song.release_date.toLowerCase().includes(searchField.toLowerCase())
+        // ))
+
         return(
             <div className="App">
-                <SearchBar filterSongs={this.filterSongs}/>
+                {/* <SearchBar placeholder="Search Here" handleChange={(e) => this.setState({searchField:e.target.value})}/> */}
 
                 <MusicTable songs={this.state.songs} deleteSong={this.deleteSong}/>
                 
@@ -87,3 +109,4 @@ class App extends Component {
 }
 
 export default App;
+
